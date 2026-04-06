@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1A6B8A</color>
+    <color name="primary_dark">#0D4F6B</color>
+    <color name="primary_light">#E8F4F8</color>
+    <color name="accent">#2DC5A2</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#9E9E9E</color>
+    <color name="gray_border">#E0E0E0</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="error">#E53935</color>
+    <color name="type_patient">#2DC5A2</color>
+    <color name="type_dentist">#1A6B8A</color>
+    <color name="type_clinic">#7B4FA6</color>
+</resources>
