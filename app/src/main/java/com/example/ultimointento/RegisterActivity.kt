@@ -3,9 +3,6 @@ package com.example.ultimointento
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ultimointento.databinding.ActivityRegisterBinding
-import com.example.ultimointento.ui.fragments.ClinicRegisterFragment
-import com.example.ultimointento.ui.fragments.DentistRegisterFragment
-import com.example.ultimointento.ui.fragments.PatientRegisterFragment
 
 class RegisterActivity : AppCompatActivity() {
 

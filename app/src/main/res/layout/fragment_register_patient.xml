@@ -205,7 +205,7 @@
 
         <!-- Botón registrar -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegister"
+            android:id="@+id/btn_register_patient"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:text="Crear cuenta como Paciente"

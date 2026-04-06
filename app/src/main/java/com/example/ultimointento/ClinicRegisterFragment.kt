@@ -6,11 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.ultimointento.data.AppDatabase
-import com.example.ultimointento.data.repository.UserRepository
 import com.example.ultimointento.databinding.FragmentRegisterClinicBinding
-import com.example.ultimointento.viewmodel.AuthViewModel
-import com.example.ultimointento.viewmodel.AuthViewModelFactory
 
 class ClinicRegisterFragment : Fragment() {
 
@@ -18,8 +14,7 @@ class ClinicRegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModels {
-        val db = AppDatabase.getInstance(requireContext())
-        AuthViewModelFactory(UserRepository(db))
+        AuthViewModelFactory(UserRepository())
     }
 
     override fun onCreateView(

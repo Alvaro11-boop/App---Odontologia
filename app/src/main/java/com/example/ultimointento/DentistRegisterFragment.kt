@@ -1,4 +1,4 @@
-package com.example.ultimointento.ui.fragments
+package com.example.ultimointento
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.ultimointento.data.AppDatabase
-import com.example.ultimointento.data.repository.UserRepository
 import com.example.ultimointento.databinding.FragmentRegisterDentistBinding
-import com.example.ultimointento.viewmodel.AuthViewModel
-import com.example.ultimointento.viewmodel.AuthViewModelFactory
 
 class DentistRegisterFragment : Fragment() {
 
@@ -19,8 +15,7 @@ class DentistRegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModels {
-        val db = AppDatabase.getInstance(requireContext())
-        AuthViewModelFactory(UserRepository(db))
+        AuthViewModelFactory(UserRepository())
     }
 
     override fun onCreateView(
@@ -66,15 +61,16 @@ class DentistRegisterFragment : Fragment() {
             val fullName = binding.etFullName.text.toString().trim()
             val license  = binding.etLicense.text.toString().trim()
             val specialty = binding.actvSpecialty.text.toString()
-            val bio      = binding.etBio.text.toString().trim()
-
+            // Se asume que registerDentist en el ViewModel acepta estos parámetros.
+            // En Soporte.kt, registerDentist tiene: (email, pass, phone, name, specialty, license)
+            
             if (!validarCampos(email, password, fullName, license)) return@setOnClickListener
 
             ocultarError()
             mostrarCargando(true)
             viewModel.registerDentist(
                 email, password, phone,
-                fullName, license, specialty, bio
+                fullName, specialty, license
             )
         }
     }
