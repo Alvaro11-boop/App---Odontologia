@@ -12,7 +12,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private val viewModel: AuthViewModel by viewModels {
-        AuthViewModelFactory(UserRepository())
+        AuthViewModelFactory(UserRepository(LocalStorageManager(this)))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,8 +51,9 @@ class LoginActivity : AppCompatActivity() {
         viewModel.registerResult.observe(this) { result ->
             when (result) {
                 is AuthViewModel.UiState.Success -> {
-                    // Por ahora solo mostramos un mensaje o cerramos si fuera login exitoso
-                    // Como no existen los HomeActivity, evitaremos crashear
+                    // Start PatientDashboardActivity
+                    val intent = Intent(this, com.example.ultimointento.patient.PatientDashboardActivity::class.java)
+                    startActivity(intent)
                     finish()
                 }
                 is AuthViewModel.UiState.Error -> {

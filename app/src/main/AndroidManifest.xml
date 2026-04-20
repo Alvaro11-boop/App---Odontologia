@@ -29,6 +29,26 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".patient.PatientDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".patient.PatientProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".patient.DentistListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".patient.BookAppointmentActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".patient.AppointmentsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
