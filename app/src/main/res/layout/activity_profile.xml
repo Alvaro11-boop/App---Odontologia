@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F7F8">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#00BFA5"
+        app:title="Mi Perfil"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Datos Personales"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/etEmailProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Correo (No editable)"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"
+                android:enabled="false"/>
+
+            <EditText
+                android:id="@+id/etNameProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Nombre completo"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"/>
+
+            <EditText
+                android:id="@+id/etPhoneProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Teléfono"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp"
+                android:inputType="phone"/>
+                
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Domicilio de Entrega"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="16dp"/>
+                
+            <EditText
+                android:id="@+id/etDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Dirección (ej. Calle 123 #45-67)"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"/>
+                
+            <EditText
+                android:id="@+id/etCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Ciudad"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"/>
+                
+            <EditText
+                android:id="@+id/etReferencia"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Referencia (ej. Frente al parque)"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Guardar Cambios"
+                android:textColor="@color/white"
+                app:backgroundTint="#00BFA5"
+                app:cornerRadius="8dp"
+                android:layout_marginBottom="16dp"/>
+                
+            <Button
+                android:id="@+id/btnViewOrders"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Ver Mis Pedidos"
+                android:textColor="#00BFA5"
+                app:backgroundTint="#E0F2F1"
+                app:cornerRadius="8dp"
+                style="?attr/materialButtonOutlinedStyle"
+                app:strokeColor="#00BFA5"
+                app:strokeWidth="1dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

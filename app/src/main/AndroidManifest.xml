@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="DentalConsult"
+        android:label="FarmaApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ultimointento"
@@ -31,23 +31,23 @@
             android:exported="false" />
 
         <activity
-            android:name=".patient.PatientDashboardActivity"
+            android:name=".patient.HomeActivity"
             android:exported="false" />
 
         <activity
-            android:name=".patient.PatientProfileActivity"
+            android:name=".patient.ProfileActivity"
             android:exported="false" />
 
         <activity
-            android:name=".patient.DentistListActivity"
+            android:name=".patient.CartActivity"
             android:exported="false" />
 
         <activity
-            android:name=".patient.BookAppointmentActivity"
+            android:name=".patient.OrdersActivity"
             android:exported="false" />
 
         <activity
-            android:name=".patient.AppointmentsActivity"
+            android:name=".patient.DomiciliariosActivity"
             android:exported="false" />
     </application>
 

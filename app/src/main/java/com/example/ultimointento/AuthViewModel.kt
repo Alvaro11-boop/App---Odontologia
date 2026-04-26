@@ -7,7 +7,7 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
 
     sealed class UiState {
         object Loading : UiState()
-        data class Success(val userId: Long, val userType: UserType) : UiState()
+        data class Success(val userId: Long, val rol: String) : UiState()
         data class Error(val message: String) : UiState()
     }
 
@@ -18,20 +18,12 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
     val registerResult: LiveData<UiState> = _authResult
     val loginResult: LiveData<UiState> = _authResult
 
-    fun registerClinic(email: String, pass: String, phone: String, name: String, nit: String, addr: String, city: String, web: String) {
-        execute { repository.registerClinic(email, pass, phone, name, nit, addr, city, web) }
+    fun registerUsuario(correo: String, contrasena: String, telefono: String, nombre: String) {
+        execute { repository.registerUsuario(correo, contrasena, telefono, nombre) }
     }
 
-    fun registerDentist(email: String, pass: String, phone: String, name: String, specialty: String, license: String) {
-        execute { repository.registerDentist(email, pass, phone, name, specialty, license) }
-    }
-
-    fun registerPatient(email: String, pass: String, phone: String, name: String, doc: String, birth: String) {
-        execute { repository.registerPatient(email, pass, phone, name, doc, birth) }
-    }
-
-    fun login(email: String, pass: String) {
-        execute { repository.login(email, pass) }
+    fun login(correo: String, contrasena: String) {
+        execute { repository.login(correo, contrasena) }
     }
 
     private fun execute(call: suspend () -> AuthResult) {
@@ -39,7 +31,7 @@ class AuthViewModel(private val repository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val result = call()
             _authResult.value = when (result) {
-                is AuthResult.Success -> UiState.Success(result.user.id, result.user.userType)
+                is AuthResult.Success -> UiState.Success(result.user.id_usuario, result.user.rol)
                 is AuthResult.Error -> UiState.Error(result.message)
             }
         }

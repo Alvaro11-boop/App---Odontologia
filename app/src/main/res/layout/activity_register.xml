@@ -5,277 +5,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#F5F7F8">
 
-    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/white"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Crear cuenta"
-        app:titleTextColor="@color/text_primary"/>
+        android:background="#00BFA5"
+        app:title="Crear cuenta en Farmacia"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"/>
 
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray_border"/>
+        android:layout_height="match_parent">
 
-    <!-- Encabezado -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:paddingBottom="0dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Cómo quieres registrarte?"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_primary"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Selecciona el tipo de cuenta que necesitas"
-            android:textSize="14sp"
-            android:textColor="@color/text_secondary"/>
-    </LinearLayout>
-
-    <!-- Cards de selección -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:layout_marginTop="8dp">
-
-        <!-- Tarjeta Paciente -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardPatient"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white">
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:text="Tus datos"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="16dp"/>
 
-                <!-- Ícono -->
-                <FrameLayout
-                    android:layout_width="56dp"
-                    android:layout_height="56dp">
-                    <View
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="@drawable/bg_circle_patient"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="🙂"
-                        android:textSize="24sp"/>
-                </FrameLayout>
-
-                <!-- Texto -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Paciente"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Busca y agenda citas odontológicas"
-                        android:textSize="13sp"
-                        android:textColor="@color/text_secondary"/>
-                </LinearLayout>
-
-                <!-- Flecha -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textSize="28sp"
-                    android:textColor="@color/type_patient"/>
-            </LinearLayout>
-
-            <!-- Barra de color inferior -->
-            <View
+            <EditText
+                android:id="@+id/etFullName"
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_gravity="bottom"
-                android:background="@color/type_patient"/>
-        </androidx.cardview.widget.CardView>
+                android:layout_height="56dp"
+                android:hint="Nombre completo"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPersonName"/>
 
-        <!-- Tarjeta Odontólogo -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardDentist"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white">
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Correo electrónico"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textEmailAddress"/>
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Contraseña"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPassword"/>
+                
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Teléfono (Opcional)"
+                android:background="@android:drawable/editbox_background"
+                android:padding="12dp"
+                android:layout_marginBottom="24dp"
+                android:inputType="phone"/>
+
+            <TextView
+                android:id="@+id/tvError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:gravity="center_vertical">
+                android:textColor="#D32F2F"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp"/>
 
-                <FrameLayout
-                    android:layout_width="56dp"
-                    android:layout_height="56dp">
-                    <View
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="@drawable/bg_circle_dentist"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="🦷"
-                        android:textSize="24sp"/>
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Odontólogo"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Ofrece tus servicios profesionales"
-                        android:textSize="13sp"
-                        android:textColor="@color/text_secondary"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textSize="28sp"
-                    android:textColor="@color/type_dentist"/>
-            </LinearLayout>
-
-            <View
+            <Button
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_gravity="bottom"
-                android:background="@color/type_dentist"/>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Tarjeta Clínica -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardClinic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:gravity="center_vertical">
-
-                <FrameLayout
-                    android:layout_width="56dp"
-                    android:layout_height="56dp">
-                    <View
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="@drawable/bg_circle_clinic"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="🏥"
-                        android:textSize="24sp"/>
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Clínica / Empresa"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Registra tu consultorio o franquicia"
-                        android:textSize="13sp"
-                        android:textColor="@color/text_secondary"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textSize="28sp"
-                    android:textColor="@color/type_clinic"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_gravity="bottom"
-                android:background="@color/type_clinic"/>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+                android:layout_height="60dp"
+                android:text="Registrarme"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#00BFA5"
+                app:cornerRadius="8dp"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

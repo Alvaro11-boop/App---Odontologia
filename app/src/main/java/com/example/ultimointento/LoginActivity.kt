@@ -3,13 +3,19 @@ package com.example.ultimointento
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ultimointento.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var etEmail: EditText
+    private lateinit var etPassword: EditText
+    private lateinit var tvError: TextView
+    private lateinit var btnLogin: Button
+    private lateinit var btnGoToRegister: Button
 
     private val viewModel: AuthViewModel by viewModels {
         AuthViewModelFactory(UserRepository(LocalStorageManager(this)))
@@ -17,48 +23,61 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_login)
+
+        etEmail = findViewById(R.id.etEmail)
+        etPassword = findViewById(R.id.etPassword)
+        tvError = findViewById(R.id.tvError)
+        btnLogin = findViewById(R.id.btnLogin)
+        btnGoToRegister = findViewById(R.id.btnGoToRegister)
 
         configurarBotones()
         observarResultados()
     }
 
     private fun configurarBotones() {
-        binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString()
+        btnLogin.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString()
 
             if (email.isEmpty()) {
-                mostrarError("Ingresa tu correo electrónico")
+                mostrarError("Por favor ingresa tu correo electrónico")
                 return@setOnClickListener
             }
             if (password.isEmpty()) {
-                mostrarError("Ingresa tu contraseña")
+                mostrarError("Por favor ingresa tu contraseña")
                 return@setOnClickListener
             }
 
             ocultarError()
+            mostrarCargando(true)
             viewModel.login(email, password)
         }
 
-        binding.btnGoToRegister.setOnClickListener {
+        btnGoToRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
     private fun observarResultados() {
-        viewModel.registerResult.observe(this) { result ->
+        viewModel.loginResult.observe(this) { result ->
             when (result) {
                 is AuthViewModel.UiState.Success -> {
-                    // Start PatientDashboardActivity
-                    val intent = Intent(this, com.example.ultimointento.patient.PatientDashboardActivity::class.java)
+                    val intent = Intent(this, com.example.ultimointento.patient.HomeActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
                 is AuthViewModel.UiState.Error -> {
                     mostrarCargando(false)
-                    mostrarError(result.message)
+                    // Mensaje de error más claro según el tipo de error
+                    val mensajeAmigable = when {
+                        result.message.contains("inválid", ignoreCase = true) ->
+                            "Correo o contraseña incorrectos. ¿Ya tienes una cuenta?"
+                        result.message.contains("no encontrado", ignoreCase = true) ->
+                            "No existe una cuenta con ese correo. Por favor regístrate."
+                        else -> result.message
+                    }
+                    mostrarError(mensajeAmigable)
                 }
                 AuthViewModel.UiState.Loading -> {
                     mostrarCargando(true)
@@ -68,16 +87,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun mostrarError(mensaje: String) {
-        binding.tvError.text = mensaje
-        binding.tvError.visibility = View.VISIBLE
+        tvError.text = mensaje
+        tvError.visibility = View.VISIBLE
     }
 
     private fun ocultarError() {
-        binding.tvError.visibility = View.GONE
+        tvError.visibility = View.GONE
     }
 
     private fun mostrarCargando(cargando: Boolean) {
-        binding.btnLogin.isEnabled = !cargando
-        binding.btnLogin.text = if (cargando) "Ingresando..." else "Ingresar"
+        btnLogin.isEnabled = !cargando
+        btnLogin.text = if (cargando) "Ingresando..." else "Ingresar"
     }
 }
