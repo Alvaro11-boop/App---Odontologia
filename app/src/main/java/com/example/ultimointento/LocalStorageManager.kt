@@ -5,10 +5,22 @@ import android.content.SharedPreferences
 import org.json.JSONArray
 import org.json.JSONObject
 
+/**
+ * LocalStorageManager actúa como la "Base de Datos" de la aplicación.
+ * Utiliza SharedPreferences (almacenamiento local del dispositivo) para guardar
+ * y leer usuarios, medicamentos, carritos, pedidos y domiciliarios en formato JSON.
+ */
 class LocalStorageManager(context: Context) {
+    // Inicialización del archivo de preferencias llamado "FarmaciaPrefs"
     private val prefs: SharedPreferences = context.getSharedPreferences("FarmaciaPrefs", Context.MODE_PRIVATE)
 
-    // --- Usuarios ---
+    // ==========================================
+    // --- SECCIÓN: USUARIOS ---
+    // ==========================================
+
+    /**
+     * Guarda un nuevo usuario o actualiza uno existente.
+     */
     fun saveUsuario(usuario: Usuario) {
         val usuarios = getAllUsuarios()
         val index = usuarios.indexOfFirst { it.correo == usuario.correo }
@@ -95,7 +107,14 @@ class LocalStorageManager(context: Context) {
         return getUsuarioByCorreo(correo)
     }
 
-    // --- Medicamentos (Catálogo) ---
+    // ==========================================
+    // --- SECCIÓN: MEDICAMENTOS (CATÁLOGO) ---
+    // ==========================================
+
+    /**
+     * Obtiene la lista de medicamentos (el catálogo de la farmacia).
+     * Si está vacío, inyecta algunos medicamentos por defecto.
+     */
     fun getMedicamentos(): List<Medicamento> {
         val jsonString = prefs.getString("medicamentos_list", "[]") ?: "[]"
         val jsonArray = JSONArray(jsonString)
@@ -171,7 +190,13 @@ class LocalStorageManager(context: Context) {
         return getMedicamentos().find { it.id_medicamento == id }
     }
 
-    // --- Carrito ---
+    // ==========================================
+    // --- SECCIÓN: CARRITO DE COMPRAS ---
+    // ==========================================
+
+    /**
+     * Obtiene el carrito actual de un usuario. Cada usuario tiene su propio carrito guardado con su ID.
+     */
     fun getCarrito(id_usuario: Long): Carrito {
         val jsonString = prefs.getString("carrito_$id_usuario", null)
         if (jsonString == null) {
@@ -218,7 +243,13 @@ class LocalStorageManager(context: Context) {
         prefs.edit().remove("carrito_$id_usuario").apply()
     }
 
-    // --- Pedidos ---
+    // ==========================================
+    // --- SECCIÓN: PEDIDOS ---
+    // ==========================================
+
+    /**
+     * Obtiene todo el historial de pedidos de un usuario específico.
+     */
     fun getPedidos(id_usuario: Long): List<Pedido> {
         val jsonString = prefs.getString("pedidos_list", "[]") ?: "[]"
         val jsonArray = JSONArray(jsonString)
@@ -259,6 +290,9 @@ class LocalStorageManager(context: Context) {
         return pedidos
     }
 
+    /**
+     * Guarda un nuevo pedido confirmado.
+     */
     fun savePedido(pedido: Pedido) {
         val pedidos = getAllPedidos()
         val index = pedidos.indexOfFirst { it.id_pedido == pedido.id_pedido }
@@ -335,7 +369,13 @@ class LocalStorageManager(context: Context) {
         return pedidos
     }
     
-    // --- Domicilios ---
+    // ==========================================
+    // --- SECCIÓN: DOMICILIOS (DIRECCIONES) ---
+    // ==========================================
+    
+    /**
+     * Obtiene las direcciones guardadas por un usuario.
+     */
     fun getDomicilios(id_usuario: Long): List<Domicilio> {
         val jsonString = prefs.getString("domicilios_list", "[]") ?: "[]"
         val jsonArray = JSONArray(jsonString)
@@ -399,7 +439,14 @@ class LocalStorageManager(context: Context) {
         return domicilios
     }
 
-    // --- Domiciliarios ---
+    // ==========================================
+    // --- SECCIÓN: DOMICILIARIOS (REPARTIDORES) ---
+    // ==========================================
+
+    /**
+     * Obtiene la lista de todos los repartidores (domiciliarios).
+     * Si no hay ninguno guardado, crea un par por defecto.
+     */
     fun getDomiciliarios(): List<Domiciliario> {
         val jsonString = prefs.getString("domiciliarios_list", "[]") ?: "[]"
         val jsonArray = JSONArray(jsonString)

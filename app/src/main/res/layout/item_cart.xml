@@ -41,15 +41,49 @@
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvCartItemQuantity"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="x1"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#00BFA5"
-            android:layout_marginEnd="16dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="16dp">
+
+            <Button
+                android:id="@+id/btnMinusQuantity"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="-"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#00BFA5"
+                android:padding="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"/>
+
+            <TextView
+                android:id="@+id/tvCartItemQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginHorizontal="12dp"/>
+
+            <Button
+                android:id="@+id/btnPlusQuantity"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#00BFA5"
+                android:padding="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvCartItemSubtotal"
